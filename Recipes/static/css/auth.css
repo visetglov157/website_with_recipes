@@ -1,0 +1,57 @@
+body {
+  background: rgb(207,217,223);
+  background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(247, 220, 185) 75%, rgb(222, 172, 128) 100%);
+}
+
+.bg-chocolate {
+    background-color: rgba(145, 79, 30, 0.5);
+}
+
+.btn-outline-chocolate {
+  background-color: #FFF;
+  border-color: rgb(145, 79, 30);
+  color: rgb(145, 79, 30);
+}
+
+.btn-outline-chocolate:hover {
+  background-color: rgb(145, 79, 30);
+  color: #FFF;
+}
+
+.btn-outline-chocolate:focus {
+  background-color: rgb(145, 79, 30);
+  color: #FFF;
+  outline: solid 0.2rem rgba(145, 79, 30, 0.5)!important;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(145, 79, 30, 0.5);
+}
+
+.form-control::placeholder {
+  color: rgba(145, 79, 30, 0.5)!important;
+}
+
+.mw-300 {
+  min-width: 300px;
+}
+
+input {
+  border-color: rgb(145, 79, 30)!important;
+}
+
+input:user-invalid, textarea:user-invalid, input[aria-invalid=true] textarea[aria-invalid=true] {
+  border: 2px solid red!important;
+  border-radius: 0.5rem;
+}
+
+ul.errorlist {
+    color: red;
+    margin: 0;
+    padding: 0;
+    align-self: start;
+}
+
+ul.errorlist li::marker {
+  content: '*';
+}

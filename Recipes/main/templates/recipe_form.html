@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <h2>{% if form.instance.pk %}Редактировать рецепт{% else %}Добавить Рецепт{% endif %}</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-buttons">
+            <button type="submit" class="btn btn-sage">Сохранить</button>
+            <a href="{% url 'recipe_list' %}" class="btn btn-outline-chocolate">Назад к списку рецептов</a>
+        </div>
+    </form>
+{% endblock %}

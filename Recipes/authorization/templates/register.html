@@ -1,0 +1,14 @@
+{% extends 'base_auth.html'%}
+{% block title %}Регистрация{% endblock %}
+{% block content %}
+    <div class="bg-chocolate bg-opacity-50 mw-300 w-50 rounded p-3">
+        <form class="bg-light rounded p-4 text-center text-dark d-flex flex-column" method="POST" novalidate>
+            {% csrf_token %}
+            <h2>Регистрация</h2>
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-outline-chocolate btn-lg w-100 mt-3" value="Зарегистрироваться" />
+            <p class="mt-3">Уже зарегистрированы? <a class="link-dark" href="{% url 'login' %}">Войти</a></p>
+            <span>{{ error }}</span>
+        </form>
+    </div>
+{% endblock %}

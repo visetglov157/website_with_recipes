@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ recipe.title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ recipe.title }}</h1>
+    
+    <div>
+        <div class="recipe-img-container">
+            <img class="recipe-img-big" src="{% if recipe.image %}{{ recipe.image.url }}{% else %}/media/recipes/images/default.png{% endif %}" alt="{{ recipe.title }}">
+        </div>
+        <div class="recipe-categories">
+                {% for category in recipe.categories.all %}
+                    <p class="category-tab">{{ category.name }}</p>
+                {% empty %}
+                    <p class="category-tab">Нет категорий</p>
+                {% endfor %}
+        </div>
+        <div class="recipe-detail">
+            <h2>Описание</h2>
+            <p>{{ recipe.description }}</p>
+            <hr>
+            <h2>Время приготовления: {{ recipe.cooking_time }} минут</h2>
+            <hr>
+            <h2>Ингредиенты</h2>
+            <div class="recipe-categories">
+                {% for ingredient in recipe.ingredients.all %}
+                    <p class="category-tab">{{ ingredient.name }}</p>
+                {% empty %}
+                    <p class="category-tab">Не указано</p>
+                {% endfor %}
+            </div>
+            <hr>
+            <h2>Шаги приготовления</h2>
+            <pre>{{ recipe.steps }}</pre>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <h1>{{ title }}</h1>
+        <!-- Форма поиска -->
+        <form class="search-form" method="get" action="{% url 'recipe_list' %}">
+            <input
+                type="text"
+                name="title"
+                placeholder="Поиск по названию"
+                value="{{ query|default_if_none:'' }}"
+                class="form-control"
+            >
+            <button type="submit" class="btn btn-sage">Искать</button>
+        </form>
+        {% for recipe in recipes %}
+        <div class="recipe-card" onclick="window.location='{% url 'recipe_detail' recipe.id %}'">
+            <img
+                class="recipe-img"
+                src="{% if recipe.image %}{{ recipe.image.url }}{% else %}/media/recipes/images/default.png{% endif %}"
+                alt="{{ recipe.title }}"
+            >
+            <div class="recipe-info">
+                <div class="recipe-categories">
+                    {% for category in recipe.categories.all %}
+                        <p class="category-tab">{{ category.name }}</p>
+                    {% empty %}
+                        <p class="category-tab">Нет категорий</p>
+                    {% endfor %}
+                </div>
+                <div class="recipe-title">
+                    <h2>{{ recipe.title }}</h2>
+                    {% if recipe.author == request.user %}
+                    <div class="btn-group">
+                        <a href="{% url 'recipe_edit' recipe.id %}"><button class="btn btn-sage"><i class="fa-regular fa-pen-to-square"></i></button></a>
+                        <a href="{% url 'recipe_delete' recipe.id %}"><button class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></button></a>
+                    </div>
+                    {% endif %}
+                </div>
+                <p class="recipe-description">{{ recipe.description|truncatechars:350 }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <h2>Ничего не найдено...</h2>
+        {% endfor %}
+{% endblock %}
